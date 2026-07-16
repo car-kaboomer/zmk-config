@@ -22,18 +22,18 @@
 include:
   #- board: seeeduino_xiao_ble
   #  shield: tester_xiao
-  #- board: seeeduino_xiao_ble
-  #  shield: metasepia
-  #  artifact-name: metasepia_ble
+  - board: seeeduino_xiao_ble
+    shield: metasepia
+    artifact-name: metasepia_ble
   #- board: seeeduino_xiao_rp2040
   #  shield: metasepia
   #  artifact-name: metasepia_wired
   - board: seeeduino_xiao_ble
     shield: ravine_left
     artifact-name: ravine_left
-  #- board: seeeduino_xiao_ble
-  #  shield: ravine_right
-  #  artifact-name: ravine_right
+  - board: seeeduino_xiao_ble
+    shield: ravine_right
+    artifact-name: ravine_right
   - board: seeeduino_xiao_ble
     shield: settings_reset
     artifact-name: xiao_settings_reset
