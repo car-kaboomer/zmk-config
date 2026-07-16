@@ -20,8 +20,5 @@ manifest:
   - name: zmk-keyboard-ravine
     remote: car-kaboomer
     revision: main
-  - name: zmk-keyboard-metasepia2
-    remote: car-kaboomer
-    revision: main
   self:
     path: config
