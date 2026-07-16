@@ -4,8 +4,8 @@ manifest:
     url-base: https://github.com/zmkfirmware
   - name: urob
     url-base: https://github.com/urob
-  - name: zakwaykway
-    url-base: https://github.com/zakwaykway
+  - name: car-kaboomer
+    url-base: https://github.com/car-kaboomer
   projects:
   - name: zmk
     remote: zmkfirmware
@@ -15,10 +15,13 @@ manifest:
     remote: urob
     revision: main
   - name: zmk-keyboard-metasepia
-    remote: zakwaykway
+    remote: car-kaboomer
     revision: main
   - name: zmk-keyboard-ravine
-    remote: zakwaykway
+    remote: car-kaboomer
+    revision: main
+  - name: zmk-keyboard-metasepia2
+    remote: car-kaboomer
     revision: main
   self:
     path: config
