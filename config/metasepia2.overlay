@@ -5,9 +5,9 @@
     };
 
     encoder_left {
-        status = "okay"
+        status = "okay";
     };
     encoder_right {
-        status = "okay"
+        status = "okay";
     };
 }
