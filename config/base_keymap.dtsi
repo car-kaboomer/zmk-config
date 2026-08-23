@@ -59,7 +59,7 @@
 ZMK_HOLD_TAP(hrm, // HR mods
     flavor = "tap-preferred";
     tapping-term-ms = <220>;
-    require-prior-idle-ms = <80>;
+    require-prior-idle-ms = <85>;
     quick-tap-ms = <180>;
     bindings = <&kp>, <&kp>; )
 ZMK_HOLD_TAP(hrl, // HR layer
@@ -133,7 +133,7 @@ ZMK_COMBO(undo,         &kp LG(Z),            LT4 LT3,            ALL) // cmd z
 ZMK_COMBO(esc,          &kp ESC,              LT3 LT2,            ALL, 33, 50) // esc
 ZMK_COMBO(v,            &am LG(V) V,          LT2 LT1,            ALL, 50) // v
 ZMK_COMBO(msctrl,       &kp LC(UP),           LT3 LT2 LT1,        ALL) // mission control
-ZMK_COMBO(bspc_d,       &mt DEL BSPC,         LM3 LM2,            CMK NUM NAV FUN, 25, 50) // backspace
+ZMK_COMBO(bspc,         &kp BSPC,             LM3 LM2,            CMK NUM NAV FUN, 25, 50) // backspace
 ZMK_COMBO(tab,          &kp TAB,              LM3 LM1,            ALL, 27) // tab
 ZMK_COMBO(enter,        &kp ENTER,            LM2 LM1,            CMK NUM NAV FUN, 24, 60) // enter
 ZMK_COMBO(qucombo,      &cmdq Q 0,            LB3 LB2,            ALL) // qu q
@@ -149,7 +149,7 @@ ZMK_COMBO(bang,         &kp EXCL,             LT0 LM0,            ALL) // !
 // pinky dual
 // thumb + finger
 ZMK_COMBO(underscore,   &kp UNDERSCORE,       RT1 RT2,            ALL, 22, 50) // _
-ZMK_COMBO(bspc_d2,      &mt DEL BSPC,         RM2 RM3,            CMK NUM NAV FUN, 22, 50) // backspace
+ZMK_COMBO(bspc2,        &kp BSPC,             RM2 RM3,            CMK NUM NAV FUN, 22, 50) // backspace
 ZMK_COMBO(enter2,       &kp ENTER,            RM1 RM2,            CMK NUM NAV FUN, 24, 60) // enter
 ZMK_COMBO(tab2,         &kp TAB,              RM1 RM3,            ALL, 27) // tab
 ZMK_COMBO(dashes,       &am UNDERSCORE MINUS, RB1 RB2,            ALL) // - _
