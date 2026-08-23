@@ -1,0 +1,13 @@
+/ {
+    chosen {
+        zmk,kscan = &components_up_kscan;
+        zmk,physical-layout = &pinky_attached_physical_layout;
+    };
+
+    &encoder_left {
+        status = "okay"
+    };
+    &encoder_right {
+        status = "okay"
+    };
+}
