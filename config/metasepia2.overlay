@@ -10,4 +10,4 @@
     encoder_right {
         status = "okay";
     };
-}
+};
