@@ -175,7 +175,7 @@ XX, XX,            &am LG(X) X,   &am LG(C) C,   &kp D,         XX,             
 // ╭──────────────┼──────────────┴──────────────┼──────────────┼──────────────╮   ╭─────────────┼──────────────┼──────────────┴──────────────┼──────────────╮
 XX, &mo NUM,       XX,            &kp C_PP,      &mo NUM,       &mt LSHIFT BSPC,  &lt NAV SPACE, &lt MSE APOS,  &kp BSPC,      XX,            &lt MSE APOS,  XX),
 // ╰──────────────╯              ╰──────────────┴──────────────┴──────────────╯   ╰─────────────┴──────────────┴──────────────╯              ╰──────────────╯
-                                  ENCODER C_VOL_UP C_VOL_DN //&inc_dec_kp PG_UP PG_DN
+                                  ENCODER C_VOL_UP C_VOL_DN     ENCODER C_FF C_PREV
 )
 /*
 ZMK_LAYER(AKL, // AKL 1
