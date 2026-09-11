@@ -4,10 +4,16 @@
         zmk,physical-layout = &pinky_attached_physical_layout;
     };
 
-    encoder_left {
+    /*encoder_left {
         status = "okay";
     };
     encoder_right {
         status = "okay";
-    };
+    };*/
+};
+&left_encoder {
+    status = "okay";
+};
+&right_encoder {
+    status = "okay";
 };
