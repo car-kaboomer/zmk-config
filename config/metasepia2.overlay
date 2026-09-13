@@ -4,7 +4,7 @@
         zmk,physical-layout = &pinky_attached_physical_layout;
     };
 
-    encoder_left {
+    /*encoder_left {
         steps = <80>;
         status = "okay";
     };
@@ -14,5 +14,5 @@
     };
     sensors {
         triggers-per-rotation = <20>;
-    };
+    };*/
 };
