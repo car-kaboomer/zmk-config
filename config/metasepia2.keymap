@@ -13,3 +13,22 @@
                         k34 k35     k36 k37                     \
 
 #include "base_keymap.dtsi"
+
+/ {
+    chosen {
+        zmk,kscan = &components_up_kscan;
+        zmk,physical-layout = &pinky_attached_physical_layout;
+    };
+
+    /*encoder_left {
+        steps = <80>;
+        status = "okay";
+    };
+    encoder_right {
+        steps = <80>;
+        status = "okay";
+    };
+    sensors {
+        triggers-per-rotation = <20>;
+    };*/
+};
