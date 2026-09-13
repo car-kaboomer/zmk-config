@@ -16,11 +16,11 @@
 &sensors {
      status = "okay";
      sensors = <&left_encoder &right_encoder>;
-    triggers-per-rotation = <80>;
+    triggers-per-rotation = <20>;
 };
 
-&left_encoder { status = "okay"; steps = <20>; };
-&right_encoder { status = "okay"; steps = <20>; };
+&left_encoder { status = "okay"; steps = <80>; };
+&right_encoder { status = "okay"; steps = <80>; };
 
 #include "base_keymap.dtsi"
 
