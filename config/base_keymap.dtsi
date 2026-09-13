@@ -173,7 +173,7 @@ XX, &hrl NUM A,    &hrm LCTRL R,  &hrm LGUI S,   &hrm LALT T,   &hrm LSHIFT G,  
 // ╰──────────────┼──────────────┼──────────────┼──────────────┼──────────────╯   ╰─────────────┼──────────────┼──────────────┼──────────────┼──────────────╯
 XX, XX,            &am LG(X) X,   &am LG(C) C,   &kp D,         XX,                XX,           &kp H,         &comma,        &dot,          XX,            XX,
 // ╭──────────────┼──────────────┴──────────────┼──────────────┼──────────────╮   ╭─────────────┼──────────────┼──────────────┴──────────────┼──────────────╮
-XX, &mo NUM,       XX,            &kp C_PP,      &mo NUM,       &mt LSHIFT BSPC,  &lt NAV SPACE, &lt MSE APOS,  &kp BSPC,      XX,            &lt MSE APOS,  XX),
+XX, &mo NUM,       XX,            &kp C_PP,      &mo NUM,       &mt LSHIFT BSPC,  &lt NAV SPACE, &lt MSE APOS,  &kp C_MUTE,      XX,            &lt MSE APOS,  XX),
 // ╰──────────────╯              ╰──────────────┴──────────────┴──────────────╯   ╰─────────────┴──────────────┴──────────────╯              ╰──────────────╯
                                   ENCODER C_VOL_UP C_VOL_DN     ENCODER C_FF C_PREV
 )
