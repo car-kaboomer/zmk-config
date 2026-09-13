@@ -12,6 +12,15 @@
             k21 k22 k23 k24 k33     k38 k27 k28 k29 k2A         \
                         k34 k35     k36 k37                     \
 
+
+&sensors {
+     status = "okay";
+     sensors = <&left_encoder &right_encoder>;
+};
+
+&left_encoder { status = "okay"; };
+&right_encoder { status = "okay"; };
+
 #include "base_keymap.dtsi"
 
 / {
@@ -19,16 +28,4 @@
         zmk,kscan = &components_up_kscan;
         zmk,physical-layout = &pinky_attached_physical_layout;
     };
-
-    /*encoder_left {
-        steps = <80>;
-        status = "okay";
-    };
-    encoder_right {
-        steps = <80>;
-        status = "okay";
-    };
-    sensors {
-        triggers-per-rotation = <20>;
-    };*/
 };
