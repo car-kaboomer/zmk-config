@@ -12,12 +12,14 @@
 
 #define CMK 0 // parameterize layer names
 #define NUM 1
-#define MSE 2
-#define MMV 3
-#define BRW 4
-#define NAV 5
-#define MCR 6
-#define FUN 7
+#define MSG 2
+#define MMG 3
+#define MSE 4
+#define MMS 5
+#define MMV 6
+#define NAV 7
+#define FUN 8
+//#define MCR 8
 
 #define CAG(keycode) LC(LG(LA(keycode)))  // shorten hyper key definition
 #define free &trans
@@ -55,7 +57,7 @@
 &sk { release-after-ms = <500>; }; // decrease sticky duration
 
 // behaviours
-// mt is hold-pref
+// mt is hold-pref!!!
 ZMK_HOLD_TAP(hrm, // HR mods
     flavor = "tap-preferred";
     tapping-term-ms = <220>;
@@ -80,6 +82,8 @@ ZMK_HOLD_TAP(c_w_l, // caps word/lock
     flavor = "tap-preferred"; tapping-term-ms = <180>; bindings = <&kp>, <&caps_word>; )
 ZMK_HOLD_TAP(qu, // qu q
     flavor = "tap-preferred"; tapping-term-ms = <135>; quick-tap-ms = <135>; bindings = <&kp>, <&qu_m>; )
+ZMK_HOLD_TAP(llt, // layer layertap
+    flavor = "tap-preferred"; tapping-term-ms = <185>; bindings = <&mo>, <&tog>; )
 ZMK_TAP_DANCE(ss_s, // tap copy, hold save
     tapping-term-ms = <300>;
     bindings =
@@ -126,8 +130,8 @@ ZMK_MACRO_ONE_PARAM(brc,
 ZMK_MACRO_ONE_PARAM(brc2,
     bindings = <&macro_param_1to1 &macro_param_2to2 &mt 0 0 &kp LEFT>; ) // add shift, for {} ()
 
-// combos                                                         lyr, t/o, idl
-//disable some combos on mouse layer
+// COMBOS                                                         lyr, t/o, idl
+// disable some combos on mouse layer
 // order: left-right hand, horiz-vert, left-right, top-bottom
 ZMK_COMBO(undo,         &kp LG(Z),            LT4 LT3,            ALL) // cmd z
 ZMK_COMBO(esc,          &kp ESC,              LT3 LT2,            ALL, 33, 50) // esc
@@ -142,12 +146,11 @@ ZMK_COMBO(bkt,          &mt RBKT LBKT,        LT3 LM3,            ALL) // []
 ZMK_COMBO(par,          &mt RPAR LPAR,        LT2 LM2,            ALL) // () 
 ZMK_COMBO(slashes,      &am BSLH FSLH,        LT1 LM1,            ALL) // / & bslh 
 ZMK_COMBO(bang,         &kp EXCL,             LT0 LM0,            ALL) // !
-//ZMK_COMBO(numword,      &num_word NUM,        LT3 LH0,            ALL) // number word
-//ZMK_COMBO(del_p,        &mt BSPC DEL,         LM3 LM2,            PRD, 30, 50) // delete
-// mid ring bot+top
-// ring top mid
-// pinky dual
+// (hand: combo: availabilities)
+// RIGHT: mid+ring: bot+top
+// LEFT+RIGHT: bot+mid: ring-mid-index
 // thumb + finger
+// **right-hand combos**
 ZMK_COMBO(underscore,   &kp UNDERSCORE,       RT1 RT2,            ALL, 22, 50) // _
 ZMK_COMBO(bspc2,        &kp BSPC,             RM2 RM3,            CMK NUM NAV FUN, 22, 50) // backspace
 ZMK_COMBO(enter2,       &kp ENTER,            RM1 RM2,            CMK NUM NAV FUN, 24, 60) // enter
@@ -158,11 +161,16 @@ ZMK_COMBO(inter,        &kp QMARK,            RT0 RM0,            ALL) // ?
 ZMK_COMBO(astrk_gr,     &mt GRAVE ASTERISK,   RT1 RM1,            ALL) // * `
 ZMK_COMBO(pound_at,     &mt AT POUND,         RT2 RM2,            ALL) // # @
 ZMK_COMBO(plus,         &mt PLUS EQUAL,       RT3 RM3,            ALL) // + =
+ZMK_COMBO(scln,         &kp SCLN,             LM2 LB2,            ALL) // ;
+ZMK_COMBO(cln,          &kp COLON,            LM3 LB3,            ALL) // :
+// utility combos
 ZMK_COMBO(boot,         &blr 0 0,             LT4 LT0 LM4 LM0,    ALL) // rst left (inner+outer)
-ZMK_COMBO(FUN,          &mo FUN,              LH0 LH1,            ALL) // FUN
+ZMK_COMBO(FUN_MSG,      &llt FUN MSG,         LH1 LH0,            ALL) // FUN on hold, MSG on tap
 ZMK_COMBO(CMKL,         &to CMK,              LM3 LM2 LM1,        ALL) // CMK (CAG mirror positions)
 ZMK_COMBO(CMKR,         &to CMK,              RM1 RM2 RM3,        ALL) // CMK (CAG mirror positions)
-ZMK_COMBO(BRW,          &tog BRW,             LH1 LH0,            ALL) // BRW
+// layer-specific combos
+ZMK_COMBO(cmd_w,        &kp LG(W),            LM3 LM2,            MSG) // close window/tab
+
 
 ZMK_LAYER(Colemak, // CMK 0
     LAYER_ADAPTER(
@@ -171,11 +179,11 @@ XX, &hrm LSHFT Z,  &kp W,         &kp F,      &am LC(LA(LGUI)) P, &kp B,        
 // ├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤   ├─────────────┼──────────────┼──────────────┼──────────────┼──────────────┤
 XX, &hrl NUM A,    &hrm LCTRL R,  &hrm LGUI S,   &hrm LALT T,   &hrm LSHIFT G,     &hrm LSHIFT M, &hrm LALT N,  &hrm LGUI E,   &hrm LCTRL I,  &hrl MSE O,    XX,
 // ╰──────────────┼──────────────┼──────────────┼──────────────┼──────────────╯   ╰─────────────┼──────────────┼──────────────┼──────────────┼──────────────╯
-XX, XX,            &am LG(X) X,   &am LG(C) C,   &kp D,         XX,                XX,           &kp H,         &comma,        &dot,          XX,            XX,
+XX, &lt NUM Z,     &am LG(X) X,   &am LG(C) C,   &kp D,         XX,                XX,           &kp H,         &comma,        &dot,          &lt MSE APOS,  XX,
 // ╭──────────────┼──────────────┴──────────────┼──────────────┼──────────────╮   ╭─────────────┼──────────────┼──────────────┴──────────────┼──────────────╮
-XX, &mo NUM,       XX,            &kp C_PP,      &mo NUM,       &mt LSHIFT BSPC,  &lt NAV SPACE, &lt MSE APOS,  &kp C_MUTE,      XX,            &lt MSE APOS,  XX),
+XX, &mo NUM,       XX,            &kp C_PP,      &mo NUM,       &mt LSHIFT TAB,    &lt NAV SPACE, &lt MSE APOS, &kp C_MUTE,    XX,            &lt MSE APOS,  XX),
 // ╰──────────────╯              ╰──────────────┴──────────────┴──────────────╯   ╰─────────────┴──────────────┴──────────────╯              ╰──────────────╯
-                                  ENCODER C_VOL_UP C_VOL_DN     ENCODER C_FF C_PREV
+                                  ENCODER C_VOL_UP C_VOL_DN                                                     ENCODER C_FF C_PREV
 )
 /*
 ZMK_LAYER(AKL, // AKL 1
@@ -203,7 +211,34 @@ XX, &trans,        XX,            &trans,        &trans,        &trans,         
 // ╰──────────────╯              ╰──────────────┴──────────────┴──────────────╯   ╰─────────────┴──────────────┴──────────────╯              ╰──────────────╯
                                   ENCODER C_FF C_PREV //&inc_dec_kp PG_UP PG_DN
 )
-ZMK_LAYER(Mouse, // MSE 2
+ZMK_LAYER(Mousing, // MSG 2
+    LAYER_ADAPTER(
+//  needs work. Integrate encoder for tab switching, volume (layer )?
+// ╭──────────────┬──────────────┬──────────────┬──────────────┬──────────────╮   ╭─────────────┬──────────────┬──────────────┬──────────────┬──────────────╮
+XX, &trans,        &trans,        &trans,        &trans,        &trans,            free,         free,          free,          free,          free,          XX,
+// ├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤   ├─────────────┼──────────────┼──────────────┼──────────────┼──────────────┤
+XX, &trans,        &trans,        &trans,        &trans,        &kp trans,         free,         free,          free,          free,          free,          XX,
+// ╰──────────────┼──────────────┼──────────────┼──────────────┼──────────────╯   ╰─────────────┼──────────────┼──────────────┼──────────────┼──────────────╯
+XX, &trans,        &trans,        &trans,        &trans,        XX,                XX,           free,          free,          free,          XX,            XX,
+// ╭──────────────┼──────────────┴──────────────┼──────────────┼──────────────╮   ╭─────────────┼──────────────┼──────────────┴──────────────┼──────────────╮
+XX, &trans,        XX,            &trans,    &lt MMM LC(LS(TAB)), &lt MMG LC(TAB), &tog MSG,     &trans,        &trans,        XX,            &trans,        XX),
+// ╰──────────────╯              ╰──────────────┴──────────────┴──────────────╯   ╰─────────────┴──────────────┴──────────────╯              ╰──────────────╯
+                                  ENCODER LC(TAB) LC(LS(TAB)) ENCODER C_VOL_UP C_VOL_DN 
+)
+ZMK_LAYER(Mousing_mirror, // MMG 3
+    LAYER_ADAPTER(
+// ╭──────────────┬──────────────┬──────────────┬──────────────┬──────────────╮   ╭─────────────┬──────────────┬──────────────┬──────────────┬──────────────╮
+XX, &kp Z,         &kp LG(W),     &kp UP,        &kp LG(LS(T)), &kp C_VOL_UP,      free,         free,          &penta UP,     free,          free,          XX,
+// ├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤   ├─────────────┼──────────────┼──────────────┼──────────────┼──────────────┤
+XX, &kp F16,       &kp LEFT,      &kp DOWN,      &kp RIGHT,     &kp C_VOL_DN,      free,         &penta LEFT,   &penta DOWN,   &penta RIGHT,  &penta DEL,    XX,
+// ╰──────────────┼──────────────┼──────────────┼──────────────┼──────────────╯   ╰─────────────┼──────────────┼──────────────┼──────────────┼──────────────╯
+XX, XX,            free,          free,          &kp,           XX,                XX,           &penta BSPC,   free,          free,          XX,            XX,
+// ╭──────────────┼──────────────┴──────────────┼──────────────┼──────────────╮   ╭─────────────┼──────────────┼──────────────┴──────────────┼──────────────╮
+XX, &trans,        XX,            &trans,        &trans,        &trans,            &trans,       &trans,        &trans,        XX,            &trans,        XX),
+// ╰──────────────╯              ╰──────────────┴──────────────┴──────────────╯   ╰─────────────┴──────────────┴──────────────╯              ╰──────────────╯
+                                  ENCODER C_VOL_UP C_VOL_DN //&inc_dec_kp PG_UP PG_DN
+)
+ZMK_LAYER(Mouse, // MSE 4
     LAYER_ADAPTER(
 // ╭──────────────┬──────────────┬──────────────┬──────────────┬──────────────╮   ╭─────────────┬──────────────┬──────────────┬──────────────┬──────────────╮
 XX, &mkp MB3,      &mkp MB2,      &msc SCRL_DOWN,&mo MMV,       &kp C_VOL_UP,      &kp C_VOL_UP, &mkp MB4,      &mmv MOVE_UP,  &mkp MB5,      &kp C_PP,      XX,
@@ -216,7 +251,20 @@ XX, &mkp MB3,      XX,            &trans,        &trans,        &mkp MB1,       
 // ╰──────────────╯              ╰──────────────┴──────────────┴──────────────╯   ╰─────────────┴──────────────┴──────────────╯              ╰──────────────╯
                                   ENCODER C_VOL_UP C_VOL_DN //&inc_dec_kp PG_UP PG_DN
 )
-ZMK_LAYER(Speed, // MMV 3
+ZMK_LAYER(Mouse_mirror, // MMS 5
+    LAYER_ADAPTER(
+// ╭──────────────┬──────────────┬──────────────┬──────────────┬──────────────╮   ╭─────────────┬──────────────┬──────────────┬──────────────┬──────────────╮
+XX, &mkp MB2,      &mkp MB4,      &mmv MOVE_UP,  &mkp MB5,      &kp C_VOL_UP,      &kp C_VOL_UP, &mkp MB4,      &mmv MOVE_UP,  &mkp MB5,      &kp C_PP,      XX,
+// ├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤   ├─────────────┼──────────────┼──────────────┼──────────────┼──────────────┤
+XX, &mkp MB1,      &mmv MOVE_LEFT,&mmv MOVE_DOWN,&mmv MOVE_RIGHT,&kp C_VOL_DN,     &kp C_VOL_DN, &mmv MOVE_LEFT,&mmv MOVE_DOWN,&mmv MOVE_RIGHT,&kp DEL,      XX,   
+// ╰──────────────┼──────────────┼──────────────┼──────────────┼──────────────╯   ╰─────────────┼──────────────┼──────────────┼──────────────┼──────────────╯
+XX, &mkp MB3,      &kp LCTRL,     &kp LGUI,      &kp LALT,      XX,                XX,           &kp BACKSPACE, &none,         &none,         XX,            XX,
+// ╭──────────────┼──────────────┴──────────────┼──────────────┼──────────────╮   ╭─────────────┼──────────────┼──────────────┴──────────────┼──────────────╮
+XX, &mkp MB3,      XX,            &trans,        &trans,        &mkp MB1,          &trans,       &trans,        &trans,        XX,            &trans,        XX),
+// ╰──────────────╯              ╰──────────────┴──────────────┴──────────────╯   ╰─────────────┴──────────────┴──────────────╯              ╰──────────────╯
+                                  ENCODER C_VOL_UP C_VOL_DN //&inc_dec_kp PG_UP PG_DN
+)
+ZMK_LAYER(Speed, // MMV 6
     LAYER_ADAPTER(
 XX, &trans, &trans, &trans, &trans, &trans, &trans, &trans, &trans, &trans, &trans, XX, 
 XX, &trans, &trans, &trans, &trans, &trans, &trans, &trans, &trans, &trans, &trans, XX, 
@@ -224,21 +272,7 @@ XX, XX,     &trans, &trans, &trans, XX,     XX,     &trans, &trans, &trans, XX, 
 XX, &trans, XX,     &trans, &trans, &trans, &trans, &trans, &trans, XX,     &trans, XX),
 ENCODER C_VOL_UP C_VOL_DN //&inc_dec_kp PG_UP PG_DN
 )
-ZMK_LAYER(Browser, // BRW 4
-    LAYER_ADAPTER(
-//  needs work. Integrate encoder for tab switching, volume (layer )?
-// ╭──────────────┬──────────────┬──────────────┬──────────────┬──────────────╮   ╭─────────────┬──────────────┬──────────────┬──────────────┬──────────────╮
-XX, &kp Z,         &kp LG(W),     &am LS(F) F,   &kp LC(TAB),   &kp C_VOL_UP,      free,         free,          free,          free,          free,          XX,
-// ├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤   ├─────────────┼──────────────┼──────────────┼──────────────┼──────────────┤
-XX, &kp LC(LEFT),  &kp LG(R),     &kp LGUI,      &kp LC(RIGHT), &kp C_VOL_DN,      free,         free,          free,          free,          free,          XX,
-// ╰──────────────┼──────────────┼──────────────┼──────────────┼──────────────╯   ╰─────────────┼──────────────┼──────────────┼──────────────┼──────────────╯
-XX, XX,            &kp F,         &kp LC(LS(T)), &to CMK,       XX,                XX,           free,          free,          free,          XX,            XX,
-//  ╭─────────────┼──────────────┴──────────────┼──────────────┼──────────────╮   ╭─────────────┼──────────────┼──────────────┴──────────────┼──────────────╮
-XX,  &trans,       XX,            &trans,        &trans,        &trans,            &trans,       &trans,        &trans,        XX,            &trans,        XX),
-//  ╰─────────────╯              ╰──────────────┴──────────────┴──────────────╯   ╰─────────────┴──────────────┴──────────────╯              ╰──────────────╯
-                                  ENCODER LC(TAB) LC(LS(TAB)) //&inc_dec_kp PG_UP PG_DN
-)
-ZMK_LAYER(Navigation, // NAV 5
+ZMK_LAYER(Navigation, // NAV 7
     LAYER_ADAPTER(
 // ╭──────────────┬──────────────┬──────────────┬──────────────┬──────────────╮   ╭─────────────┬──────────────┬──────────────┬──────────────┬──────────────╮
 XX, &ss_s,         &kp CAG(5),    &kp TAB,       &kp ESC,         &kp C_VOL_UP,      &kp C_VOL_UP, &kp C_PREV,    &kp UP,        &kp C_FF,      &kp C_PP,      XX,
@@ -251,7 +285,7 @@ XX, &trans,/*&mo MCR*/ XX,        &trans,        &trans,        &trans,         
 // ╰──────────────╯              ╰──────────────┴──────────────┴──────────────╯   ╰─────────────┴──────────────┴──────────────╯              ╰──────────────╯
                                   ENCODER PG_UP PG_DN 
 )
-ZMK_LAYER(Util, // MCR 6
+/*ZMK_LAYER(Util, // MCR 7
     LAYER_ADAPTER(
 // ╭──────────────┬──────────────┬──────────────┬──────────────┬──────────────╮   ╭─────────────┬──────────────┬──────────────┬──────────────┬──────────────╮
 XX, free,          free,          free,          free,          &kp C_VOL_UP,      free,         free,          &penta UP,     free,          free,          XX,
@@ -264,8 +298,8 @@ XX, &trans,        XX,            &trans,        &trans,        &trans,         
 // ╰──────────────╯              ╰──────────────┴──────────────┴──────────────╯   ╰─────────────┴──────────────┴──────────────╯              ╰──────────────╯
                                   ENCODER C_VOL_UP C_VOL_DN //&inc_dec_kp PG_UP PG_DN
 
-)
-ZMK_LAYER(Function, // FUN 7
+)*/
+ZMK_LAYER(Function, // FUN 8
     LAYER_ADAPTER(
 // ╭──────────────┬──────────────┬──────────────┬──────────────┬──────────────╮   ╭─────────────┬──────────────┬──────────────┬──────────────┬──────────────╮
 XX, &kp F1,        &kp F2,        &kp F3,        &kp F4,        &kp F5,            &bt BT_CLR,   &out OUT_BLE,  &out OUT_USB,  &to CMK,       &bt BT_CLR_ALL, XX,
