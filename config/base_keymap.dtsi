@@ -1,5 +1,6 @@
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 2100  // default: 600
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 14    // default: 10
+#define COMBO_TERM 45
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
@@ -9,13 +10,12 @@
 #include <input/processors.dtsi>   // for speed layer
 #include <zmk-helpers/helper.h>
 
-
 #define CMK 0 // parameterize layer names
 #define NUM 1
 #define MSG 2
 #define MMG 3
 #define MSE 4
-#define MMS 5
+#define MMM 5
 #define MMV 6
 #define NAV 7
 #define FUN 8
@@ -25,6 +25,7 @@
 #define free &trans
 #define XX   &none
 #define ENCODER &inc_dec_kp
+
 
 // scrolling is very slow on windows
 // mouse layer is the least used layer. Move it? lefthand combo: w + p
@@ -61,18 +62,18 @@
 ZMK_HOLD_TAP(hrm, // HR mods
     flavor = "tap-preferred";
     tapping-term-ms = <220>;
-    require-prior-idle-ms = <85>;
+    require-prior-idle-ms = <80>;
     quick-tap-ms = <180>;
     bindings = <&kp>, <&kp>; )
 ZMK_HOLD_TAP(hrl, // HR layer
     flavor = "tap-preferred";
     tapping-term-ms = <190>;
-    require-prior-idle-ms = <60>;
+    require-prior-idle-ms = <68>;
     quick-tap-ms = <150>;
     bindings = <&mo>, <&kp>; )
 ZMK_HOLD_TAP(am, // automodify
     flavor = "tap-preferred"; // but tap-term reduced from hrm to make holding easier
-    tapping-term-ms = <175>;
+    tapping-term-ms = <150>;
     require-prior-idle-ms = <90>;
     quick-tap-ms = <200>;
     bindings = <&kp>, <&kp>; )
@@ -80,11 +81,11 @@ ZMK_HOLD_TAP(blr, // bootloader + reset
     flavor = "tap-preferred"; tapping-term-ms = <200>; bindings = <&bootloader>, <&sys_reset>; )
 ZMK_HOLD_TAP(c_w_l, // caps word/lock
     flavor = "tap-preferred"; tapping-term-ms = <180>; bindings = <&kp>, <&caps_word>; )
-ZMK_HOLD_TAP(qu, // qu q
-    flavor = "tap-preferred"; tapping-term-ms = <135>; quick-tap-ms = <135>; bindings = <&kp>, <&qu_m>; )
+//ZMK_HOLD_TAP(qu_ht, // qu q
+//    flavor = "tap-preferred"; tapping-term-ms = <135>; quick-tap-ms = <135>; bindings = <&kp>, <&qu_m>; )
 ZMK_HOLD_TAP(llt, // layer layertap
     flavor = "tap-preferred"; tapping-term-ms = <185>; bindings = <&mo>, <&tog>; )
-ZMK_TAP_DANCE(ss_s, // tap copy, hold save
+ZMK_TAP_DANCE(ss_s, // screenshot: tap copy, hold save
     tapping-term-ms = <300>;
     bindings =
         <&mt CAG(N2) CAG(N1)>,
@@ -95,15 +96,8 @@ ZMK_TAP_DANCE(ss_c, // same as ^
         <&mt CAG(N4) CAG(N3)>,
         <&kp LS(LG(S))>; )
 ///////////
-//  &tapdance [view macro] mt([view macro 2] [save]) 
-// LA(LSHIFT) language swap
-ZMK_TAP_DANCE(cam,
-    tapping-term-ms = <200>;
-    bindings =
-    <&mt LA(F1) LA(N1)>,
-    <&kp LC(S)>; )
 ZMK_MOD_MORPH(cmdq,
-    bindings = <&qu Q 0>, <&kp LG(Q)>;
+    bindings = <&qu_m>, <&kp LG(Q)>;
     mods = <MOD_LGUI>; )
 ZMK_MOD_MORPH(comma,
     bindings = <&am LT COMMA>, <&kp SCLN>;
@@ -121,8 +115,6 @@ ZMK_MACRO(qu_m,
     bindings = <&kp Q &kp U>; )
 ZMK_MACRO_ONE_PARAM(bt_c, // combine bt_sel with out_ble
     bindings = <&macro_param_1to2  &bt BT_SEL 0  /*&out OUT_BLE*/>; )
-ZMK_MACRO(esharp,
-    bindings = <&macro_press &kp LALT &macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N3 &kp KP_N3 &macro_release &kp LALT>; )
 ZMK_MACRO_ONE_PARAM(penta,
     bindings = <&macro_param_1to1 &kp 0 &macro_param_1to1 &kp 0 &macro_param_1to1 &kp 0 &macro_param_1to1 &kp 0 &macro_param_1to1 &kp 0>; )
 ZMK_MACRO_ONE_PARAM(brc,
@@ -131,15 +123,14 @@ ZMK_MACRO_ONE_PARAM(brc2,
     bindings = <&macro_param_1to1 &macro_param_2to2 &mt 0 0 &kp LEFT>; ) // add shift, for {} ()
 
 // COMBOS                                                         lyr, t/o, idl
-// disable some combos on mouse layer
 // order: left-right hand, horiz-vert, left-right, top-bottom
-ZMK_COMBO(undo,         &kp LG(Z),            LT4 LT3,            ALL) // cmd z
+ZMK_COMBO(q,            &kp q,                LT4 LT3,            ALL, ) // cmd z
 ZMK_COMBO(esc,          &kp ESC,              LT3 LT2,            ALL, 33, 50) // esc
 ZMK_COMBO(v,            &am LG(V) V,          LT2 LT1,            ALL, 50) // v
 ZMK_COMBO(msctrl,       &kp LC(UP),           LT3 LT2 LT1,        ALL) // mission control
 ZMK_COMBO(bspc,         &kp BSPC,             LM3 LM2,            CMK NUM NAV FUN, 25, 50) // backspace
 ZMK_COMBO(tab,          &kp TAB,              LM3 LM1,            ALL, 27) // tab
-ZMK_COMBO(enter,        &kp ENTER,            LM2 LM1,            CMK NUM NAV FUN, 24, 60) // enter
+ZMK_COMBO(enter,        &kp ENTER,            LM2 LM1,            CMK NUM NAV FUN, 21, 58) // enter
 ZMK_COMBO(qucombo,      &cmdq Q 0,            LB3 LB2,            ALL) // qu q
 ZMK_COMBO(j,            &kp J,                LB2 LB1,            ALL) // j
 ZMK_COMBO(bkt,          &mt RBKT LBKT,        LT3 LM3,            ALL) // []
@@ -153,7 +144,7 @@ ZMK_COMBO(bang,         &kp EXCL,             LT0 LM0,            ALL) // !
 // **right-hand combos**
 ZMK_COMBO(underscore,   &kp UNDERSCORE,       RT1 RT2,            ALL, 22, 50) // _
 ZMK_COMBO(bspc2,        &kp BSPC,             RM2 RM3,            CMK NUM NAV FUN, 22, 50) // backspace
-ZMK_COMBO(enter2,       &kp ENTER,            RM1 RM2,            CMK NUM NAV FUN, 24, 60) // enter
+ZMK_COMBO(enter2,       &kp ENTER,            RM1 RM2,            CMK NUM NAV FUN, 21, 58) // enter
 ZMK_COMBO(tab2,         &kp TAB,              RM1 RM3,            ALL, 27) // tab
 ZMK_COMBO(dashes,       &am UNDERSCORE MINUS, RB1 RB2,            ALL) // - _
 ZMK_COMBO(bspc_w,       &mt LA(DEL) LA(BSPC), RB2 RB3,            ALL) // word bspc
