@@ -124,7 +124,7 @@ ZMK_MACRO_ONE_PARAM(brc2,
 
 // COMBOS                                                         lyr, t/o, idl
 // order: left-right hand, horiz-vert, left-right, top-bottom
-ZMK_COMBO(q,            &kp q,                LT4 LT3,            ALL, ) // cmd z
+ZMK_COMBO(q,            &kp Q,                LT4 LT3,            ALL) // cmd z
 ZMK_COMBO(esc,          &kp ESC,              LT3 LT2,            ALL, 33, 50) // esc
 ZMK_COMBO(v,            &am LG(V) V,          LT2 LT1,            ALL, 50) // v
 ZMK_COMBO(msctrl,       &kp LC(UP),           LT3 LT2 LT1,        ALL) // mission control
@@ -160,7 +160,6 @@ ZMK_COMBO(FUN_MSG,      &llt FUN MSG,         LH1 LH0,            ALL) // FUN on
 ZMK_COMBO(CMKL,         &to CMK,              LM3 LM2 LM1,        ALL) // CMK (CAG mirror positions)
 ZMK_COMBO(CMKR,         &to CMK,              RM1 RM2 RM3,        ALL) // CMK (CAG mirror positions)
 // layer-specific combos
-ZMK_COMBO(cmd_w,        &kp LG(W),            LM3 LM2,            MSG) // close window/tab
 
 
 ZMK_LAYER(Colemak, // CMK 0
