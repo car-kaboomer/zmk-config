@@ -19,14 +19,14 @@
     triggers-per-rotation = <20>;
 };
 
-&left_encoder { status = "okay"; steps = <80>; };
-&right_encoder { status = "okay"; steps = <80>; };
+&left_encoder { status = "okay"; steps = <80>; }; // "disabled" or "okay"
+&right_encoder { status = "disabled"; steps = <80>; };
 
 #include "base_keymap.dtsi"
 
 / {
     chosen {
-        zmk,kscan = &components_up_kscan;
-        zmk,physical-layout = &pinky_attached_physical_layout;
+        zmk,kscan = &components_down_kscan; // components_down_kscan or components_up_kscan
+        zmk,physical-layout = &pinky_attached_physical_layout; // pinky_attached_physical_layout or pinky_detached_physical_layout
     };
 };
