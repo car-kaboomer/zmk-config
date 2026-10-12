@@ -22,7 +22,7 @@
  *     ╭─────────────────────┬─────────────────────╮
  *     │ LT4 LT3 LT2 LT1 LT0 │ RT0 RT1 RT2 RT3 RT4 │
  *     │ LM4 LM3 LM2 LM1 LM0 │ RM0 RM1 RM2 RM3 RM4 │
- *     │ LB4 LB3 LB2 LB1  LEN│REN  RB1 RB2 RB3 RB4 │
+ *     │ LB4 LB3 LB2 LB1  LEC│REC  RB1 RB2 RB3 RB4 │
  *     ╰───────────╮ LH1 LH0 │ RH0 RH1 ╭───────────╯
  *                 ╰─────────┴─────────╯
  *
@@ -55,13 +55,13 @@
 #define RM3 18
 #define RM4 19
 
-#define LEN 24  // left-bottom row
+#define LEC 24  // left-bottom row
 #define LB1 23
 #define LB2 22
 #define LB3 21
 #define LB4 20
 
-#define REN 25 // right-bottom row
+#define REC 25 // right-bottom row
 #define RB1 26
 #define RB2 27
 #define RB3 28
@@ -73,19 +73,15 @@
 #define RH0 32  // right thumb keys
 #define RH1 33
 
-/*
-// All keys on the left side of the keyboard excluding thumb keys
-#define KEYS_L LT0 LT1 LT2 LT3 LT4 LT5 LM0 LM1 LM2 LM3 LM4 LM5 LB0 LB1 LB2 LB3 LB4 LB5
-
-// All keys on the right side of the keyboard excluding thumb keys
-#define KEYS_R RT0 RT1 RT2 RT3 RT4 RT5 RM0 RM1 RM2 RM3 RM4 RM5 RB0 RB1 RB2 RB3 RB4 RB5
-
-// Thumb cluster keys from the left side of the keyboard
-#define THUMB_L LF2 LF1 LF0
-
-// Thumb cluster keys from the right side of the keyboard
-#define THUMB_R RF0 RF1 RF2
-
-// All thumb cluster keys
-#define THUMBS THUMB_L THUMB_R
-*/
+// define layer adapter function for metasepia2
+#define LAYER_ADAPTER(                                          \
+    k00, k01, k02, k03, k04, k05, k06, k07, k08, k09, k0A, k0B, \
+    k10, k11, k12, k13, k14, k15, k16, k17, k18, k19, k1A, k1B, \
+    k20, k21, k22, k23, k24, k25, k26, k27, k28, k29, k2A, k2B, \
+    k30, k31, k32, k33, k34, k35, k36, k37, k38, k39, k3A, k3B  \
+)                                                               \
+            k01 k02 k03 k04 k05     k06 k07 k08 k09 k0A         \
+            k11 k12 k13 k14 k15     k16 k17 k18 k19 k1A         \
+            k21 k22 k23 k24 k33     k38 k27 k28 k29 k2A         \
+                        k34 k35     k36 k37                     \
+// this drops unused keys from the base keymap 
