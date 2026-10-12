@@ -7,7 +7,7 @@
 };
 
 &left_encoder { status = "okay"; steps = <80>; }; // "disabled" or "okay"
-&right_encoder { status = "disabled"; steps = <80>; };
+&right_encoder { status = "okay"; steps = <80>; };
 
 #include "include/base_keymap.dtsi"
 
